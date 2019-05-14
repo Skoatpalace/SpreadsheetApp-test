@@ -4,23 +4,27 @@
     <base target="_top">
   </head>
   <body>
-    Hello World from the HTML file Sidebar
-    <h1> HELLO </h1>
-    <input id="myData" value="Test">
-    <div id="output">Click here !</div>
+    Hello world from the HTML file Sidebar
+    <h1>HELLO </h1>
+    <input id="myData" value="test">
+    <div id="output">Click</div>
     <script>
-       var output = document.getElementById('output');
-       output.addEventListener('click', gsData);
-       
-       function gsData(){
-         var myData = document.getElementById('myData').value;
-         google.script.run.withSuccessHandler(onSuccess).getSheetData(myData);
-       }
-       function onSuccess(data){
-         output.innerHTML = data;
-       }
+      var output = document.getElementById('output');
+      output.addEventListener('click',gsData);
+      
+      function gsData(){
+        var myData = document.getElementById('myData').value;
+        google.script.run.withSuccessHandler(onSuccess).getSheetData(myData);
+      }
+      
+      function onSuccess(data){
+      console.log(data);
+      var html = '';
+      for(var x=0;x<data.headings.length;x++){
+        html+= data.headings[x] + ' = ' + data.cell[x] + '<br>';
+      }
+      output.innerHTML = html;
+      }
     </script>
   </body>
 </html>
-
-

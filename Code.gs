@@ -1,3 +1,11 @@
+function onChange() {
+  Logger.log('Changed content'); 
+}
+
+function onEdit() {
+  Logger.log('Content edited');
+}
+
 function onOpen(e) {
   SpreadsheetApp.getUi()
   .createMenu('Advanced')
@@ -21,9 +29,7 @@ function onOpen(e) {
 
 function fun1() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  Logger.log(ss.getUrl()); 
   var sheet = ss.getActiveSheet(); 
-  Logger.log(sheet.getName()); 
 }
 
 function name(){
@@ -122,9 +128,16 @@ function sidebarLinked() {
   SpreadsheetApp.getUi().showSidebar(html); 
 }
 
-function getSheetData(data){
-  Logger.log(data);
-  return data;
+function getSheetData(data){  
+  Logger.log(data); 
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getActiveSheet();
+  var val = sheet.getDataRange().getValues();
+  
+  var rowNum = sheet.getActiveCell().getRow();
+  Logger.log(rowNum);
+  Logger.log(val[rowNum-1]);
+  return {'cell':val[rowNum-1],'headings':val[0]};
 }
 
 function logOut(message) {

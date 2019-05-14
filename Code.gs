@@ -67,3 +67,15 @@ function tracking(){
   var table =  body.appendTable(rowData); 
   var adder = tracking.appendRow([doc.getName(), doc.getId(), doc.getUrl(), Date()])
 }
+
+function resizeColumns(){
+  var ss = SpreadsheetApp.openById('1i0_yAs9dGjwb3nRMWarrbxGhZbDu4XKvgv24DMM8FV0')
+  var tracking = ss.getSheetByName('tracking');
+  tracking.autoResizeColumns(1, 4); 
+}
+
+function clearSheet(){
+  var ss = SpreadsheetApp.openById('1i0_yAs9dGjwb3nRMWarrbxGhZbDu4XKvgv24DMM8FV0')
+  var tracking = ss.getSheetByName('Sheet3');
+  tracking.clear(); 
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    Hello World from the HTML file Sidebar
+    <h1> HELLO </h1>
+    <input id="myData" value="Test">
+    <div id="output">Click here !</div>
+    <script>
+       var output = document.getElementById('output');
+       output.addEventListener('click', gsData);
+       
+       function gsData(){
+         var myData = document.getElementById('myData').value;
+         google.script.run.withSuccessHandler(onSuccess).getSheetData(myData);
+       }
+       function onSuccess(data){
+         output.innerHTML = data;
+       }
+    </script>
+  </body>
+</html>
+
+
